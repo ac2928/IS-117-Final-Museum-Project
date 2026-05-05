@@ -1,27 +1,43 @@
 # AGENTS.md — Master Implementation Letter
 
-# The Mandate
-The goal of this website is to present Aarav Chopra as an NJIT student seeking frontend internship or entry-level tech roles. The site should clearly communicate skills, projects, and availability to recruiters and hiring managers within five seconds of landing on the page.
+## The Mandate
+The goal of this website is to present Aarav Chopra as an NJIT CS student building toward a career as an AI Product Engineer. The site should communicate a clear professional direction, real shipped projects, and an intentional AI-assisted workflow — all within a dark editorial design that feels serious and future-facing.
 
-# The Tech Stack
-- HTML (beginner)
-- CSS (beginner)
-- JavaScript (beginner)
+## The Tech Stack
+- HTML
+- CSS (custom properties, grid, flexbox, animations)
+- JavaScript (vanilla — scroll reveal, hover interactions, smooth scroll)
 
-This stack was chosen to keep the site lightweight, easy to deploy, and aligned with the student’s current skill level. Heavier frameworks were intentionally avoided to prioritize speed and clarity.
+No frameworks. No build system. Deployed via GitHub Pages from the /docs directory.
 
-# The Target Audience
-Recruiters and hiring managers reviewing candidates for internships or entry-level frontend or web development roles.
+## The Target Audience
+- Course instructors evaluating the portfolio as a final project
+- Future recruiters or hiring managers in AI product or frontend engineering roles
+- Anyone reviewing the student's professional identity online
 
-# The Sitemap
-- Hero Section: Name, role, one-line pitch, and availability (Summer 2026)
-- About Section: Brief background and current skills
-- Projects Section: Class and learning projects with short descriptions
-- Call To Action: Button linking to GitHub profile or resume
-- Contact/Footer: Location (NJ/NYC) and GitHub link
+## The Sitemap
+1. **Hero** — Name, aspirational role (AI Product Engineer), one-line pitch, GitHub CTA
+2. **About** — Background, professional direction, skills grid with categorized tags
+3. **Projects** — Four real shipped projects with live links and descriptions
+4. **AI Workflow** — Five-step breakdown of how AI tools were used intentionally
+5. **Contact / Footer** — GitHub, NJIT, email hover reveal
 
-# Non-Negotiables
-- Mobile-responsive layout
-- Clear, professional language
-- SEO keywords relevant to NJIT, New Jersey, and New York
-- A strong Call To Action such as “View My GitHub Projects”
+## Real Projects Included
+| Project | URL |
+|---------|-----|
+| Career Engineered Portfolio | https://ac2928.github.io/is117first/ |
+| Curator Cards | https://ac2928.github.io/is117curator/ |
+| Museum Project | https://ac2928.github.io/is117-museum-project/ |
+| Scrollytelling Spec Test | https://ac2928.github.io/scrollytelling-spec-test-on-museum-project-/ |
+
+## AI Tools Used in This Project
+- Claude — primary tool for research, design, code generation, and content writing
+- ChatGPT — brainstorming and project framing
+- Cursor — AI-assisted code editing
+
+## Non-Negotiables
+- Only real, shipped projects — no fake or aspirational placeholder projects
+- All external links open in new tab
+- Email displayed via hover reveal (not mailto link)
+- Mobile responsive
+- No broken links or console errors on deploy

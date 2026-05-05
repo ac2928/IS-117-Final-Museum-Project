@@ -1,152 +1,88 @@
-Project Summary
+# SPEC.md — Aspirational Portfolio Site
+## Project Summary
+Build a single-page aspirational professional portfolio for Aarav Chopra, an NJIT CS student targeting AI Product Engineer roles. This is a full redesign from the previous Swiss Minimal portfolio into a dark editorial design system that communicates a forward-looking professional identity.
 
-Refactor the existing static portfolio site to align with a Clean Swiss Minimal design system while maintaining a single-page structure and GitHub Pages deployment.
+This is not a refinement project — it is a purposeful redesign driven by a new professional direction.
 
-This is a refinement project, not a redesign.
+## Pages
+- Single-page site (index.html) hosted under /docs for GitHub Pages
 
-Pages
-
-- Single-page site (index.html)
-
-
-Sections (No New Sections Allowed)
-
+## Sections
 1. Hero
-
 2. About
-
-3. Links
-
-4. Interactive Demo
-
-5. Footer
-
-No additional sections may be added.
-
-Design Rules (Swiss Minimal)
-
-Layout
-
-- Content centered in max-width container (900px max).
-
-- Strict vertical spacing scale (16px / 24px / 32px only).
-
-- No random margin values.
-
-- Remove unnecessary rounded corners.
-
-- Reduce or eliminate heavy shadows.
-
-
-Typography
-
-- One sans-serif font family only.
-
-- Clear hierarchy:
-
-    - H1: Primary
-
-    - H2: Section headings
-
-    - Body: Regular weight
-
-- Max 3 font weights.
-
-- Line-height between 1.5–1.7.
-
-Color
-
-- Maximum 2 core colors + neutral gray.
-- No gradients.
-- High contrast.
-- CTA color used consistently.
-
-Components
-
-- Buttons: rectangular, subtle radius only.
-
-- Cards: minimal styling.
-
-- Links: clearly visible (underline or strong color).
-
-- No decorative animations.
-
-Deployment Requirements
-
-- Static HTML/CSS/JS only.
-
-- Hosted on GitHub Pages.
-
-- No build system.
-
-- No frameworks.
-
-Acceptance Criteria
-
-Visual
-
-- All sections align to central grid.
-
-- Spacing is consistent across sections.
-
-- No inconsistent border-radius usage.
-
-- No heavy shadows.
-
-- Colors reduced to controlled palette.
-
-
-Structural
-
-- Single-page layout remains intact.
-
-- No new sections added.
-
-- Code remains readable and organized.
-
-
-
-Functional
-
-- Button in Interactive Demo works.
-
-- All links function.
-
-- Site loads without console errors.
-
-
-Deployment
-
-- Site successfully deploys via GitHub Pages.
-
-- README.md includes live site URL.
-
-- README.md includes 200-word reflection.
-
-
-Non-Goals
-
-- No multi-page conversion.
-
-- No new features.
-
-- No adding project showcase.
-
-- No advanced animations.
-
-- No framework migration.
-
-
-Definition of Done
-
+3. Projects
+4. AI Workflow
+5. Contact / Footer
+
+## Design System — Dark Editorial
+### Layout
+- Full-width sections with 48px horizontal padding
+- Max-width containers where needed (1200px for grids, 900px for text)
+- Vertical rhythm based on 8px scale
+- CSS custom properties for all design tokens
+
+### Typography
+- Primary: Syne (headings, nav, UI labels)
+- Secondary: Instrument Serif (italic accent in headings)
+- Mono: DM Mono (tags, labels, code-style text)
+- Max 3 font weights per family
+
+### Color Palette
+- Background: #0a0a0b
+- Surface: #1e1e24
+- Text: #f0ede8
+- Muted: #7a7880
+- Accent: #e8622a
+- Accent 2: #f0a05a
+- Green: #4ade99
+- Blue: #60a5fa
+
+### Components
+- Buttons: rectangular, no radius, filled (primary) or ghost (secondary)
+- Project cards: surface background, 1px border, accent top-bar on hover
+- Skill rows: full-width bordered rows with tag chips
+- Tags: monospaced, color-coded by category (orange/blue/green)
+- Scroll-reveal animations on all major content blocks
+
+## Deployment Requirements
+- Static HTML/CSS/JS only
+- Hosted on GitHub Pages via /docs folder
+- No build system
+- No frameworks
+
+## Acceptance Criteria
+### Visual
+- Consistent dark color palette throughout
+- All sections use design token variables
+- Hover states on all interactive elements
+- Smooth scroll-reveal on content as it enters viewport
+
+### Structural
+- Single-page layout
+- All 5 sections present
+- Code organized and readable
+
+### Functional
+- Nav links scroll to correct sections
+- All project links open correct live sites in new tab
+- Email hover reveal shows ac2928@njit.edu
+- GitHub links point to https://github.com/ac2928
+- Site loads without console errors
+
+### Deployment
+- Deploys via GitHub Pages from /docs
+- README.md includes live site URL
+- README.md includes project reflection
+
+## Non-Goals
+- No multi-page conversion
+- No backend or database
+- No framework migration
+- No fake or placeholder projects
+
+## Definition of Done
 The portfolio:
-
-- Feels visually consistent and intentional.
-
-- Aligns with Swiss Minimal checklist.
-
-- Passes all acceptance criteria.
-
-- Is deployed and accessible.
-
-- Includes reflection in README.md.
+- Presents a believable and intentional AI Product Engineer identity
+- Showcases only real, shipped projects with working links
+- Clearly communicates AI workflow and tool usage
+- Is deployed, accessible, and submission-ready

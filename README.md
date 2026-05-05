@@ -1,21 +1,37 @@
-# Career-Engineered Portfolio — Aarav Chopra
+# Aarav Chopra — Aspirational Portfolio
 
 ## Live Site
-https://ac2928.github.io/is117first/
+https://ac2928.github.io/IS117FIRSTNEW/
 
-## Project Overview
-This project is a professional portfolio website created to present my skills and projects as an NJIT student seeking frontend internship or entry-level tech roles.
+## GitHub Repo
+https://github.com/ac2928/IS117FIRSTNEW
 
-## Orchestration Log
-During development, the AI initially generated an unnecessary `src` and `dist` project structure. I recognized that this did not align with the course requirement to use GitHub Pages with a `/docs` directory, so I removed the extra folders and kept `/docs` as the single source of truth for the website.
+---
 
+## Projects Featured
 
-Reflection
+| Project | Live Link |
+|---------|-----------|
+| Career Engineered Portfolio | https://ac2928.github.io/is117first/ |
+| Curator Cards | https://ac2928.github.io/is117curator/ |
+| Museum Project | https://ac2928.github.io/is117-museum-project/ |
+| Scrollytelling Spec Test | https://ac2928.github.io/scrollytelling-spec-test-on-museum-project-/ |
 
-This project helped me understand the difference between building something quickly and building something through a structured process. Instead of immediately trying to improve the design or add features, I clarified the goal, constraints, and definition of done before making changes. This forced me to think more carefully about what I was building and why.
+---
 
-I followed a spec-driven development workflow that began with an exploration phase to define the problem space. After converging on a single-page static site approach, I locked a written specification and defined clear acceptance criteria. I then executed the work in controlled sprints to prevent scope drift and unnecessary changes.
+## Reflection
 
-Breaking the project into small sprints made it more manageable and measurable. Each sprint had a defined scope and verification checklist, which reduced confusion and improved focus. I learned that AI is powerful for refinement and iteration, but it requires clear structure and constraints to avoid drifting away from the goal.
+This project pushed me to think about professional identity in a way I had not before. Instead of just building another assignment, I had to ask myself where I actually want to go — what kind of engineer I want to become, what kind of work I want to do, and how to present that honestly without pretending to already be there.
 
-Overall, this assignment taught me that planning and discipline lead to stronger execution. Clear specifications and incremental progress produce better results than unstructured experimentation.
+I chose AI Product Engineer as my direction because it sits at the intersection of two things I find genuinely interesting: building interfaces that feel good to use, and working with AI as a real product ingredient rather than a buzzword. Researching what that role actually looks like — the tools, the responsibilities, the skills — helped me design a portfolio that feels grounded rather than generic.
+
+The biggest shift in my thinking was around AI workflow. I had used AI tools before, but mostly just to get answers fast. This project made me think about AI as something you manage deliberately — you decide what to ask, you evaluate the output, you push back when it is wrong, and you own the final decisions. The quality of what the AI helps you produce depends entirely on the quality of your judgment going in.
+
+Building the site itself reinforced what I have been learning about frontend development. Clean structure, intentional design choices, and readable code matter more than complexity. The design I landed on — dark, editorial, type-forward — was a deliberate choice to communicate seriousness and direction rather than just following a template.
+
+This assignment taught me that a portfolio is not a record of what you have done. It is an argument for where you are going.
+
+---
+
+## How to View Locally
+Open `docs/index.html` in any browser. No build step required.

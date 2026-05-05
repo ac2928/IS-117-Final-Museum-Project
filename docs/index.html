@@ -1,54 +1,803 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Aarav Chopra | Frontend Intern Portfolio</title>
-    <link rel="stylesheet" href="css/styles.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aarav Chopra — AI Product Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --bg2: #111113;
+    --bg3: #18181c;
+    --surface: #1e1e24;
+    --border: rgba(255,255,255,0.07);
+    --border-hi: rgba(255,255,255,0.14);
+    --text: #f0ede8;
+    --muted: #7a7880;
+    --accent: #e8622a;
+    --accent2: #f0a05a;
+    --green: #4ade99;
+    --blue: #60a5fa;
+    --mono: 'DM Mono', monospace;
+    --sans: 'Syne', sans-serif;
+    --serif: 'Instrument Serif', serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    
+  }
+
+  .cursor, .cursor-ring { display: none; }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.028;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: linear-gradient(to bottom, rgba(10,10,11,0.95), transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 36px; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 30%, rgba(232,98,42,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 20% 70%, rgba(96,165,250,0.05) 0%, transparent 50%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+  }
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+  .hero h1 {
+    font-size: clamp(56px, 8vw, 108px);
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.35s forwards;
+  }
+  .hero h1 em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .hero-sub {
+    max-width: 520px;
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.5s forwards;
+  }
+  .hero-ctas {
+    display: flex; gap: 16px; align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.65s forwards;
+  }
+  .btn-primary {
+    padding: 14px 32px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-ghost {
+    padding: 14px 32px;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border-hi);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    
+    transition: color 0.2s, border-color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
+  .hero-scroll {
+    position: absolute; bottom: 32px; right: 48px;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--muted); letter-spacing: 0.1em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    display: flex; align-items: center; gap: 12px;
+    opacity: 0; animation: fadeIn 1s ease 1.2s forwards;
+  }
+  .hero-scroll::before {
+    content: '';
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--muted));
+  }
+
+  /* Sections */
+  section {
+    padding: 120px 48px;
+    position: relative;
+  }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 64px;
+  }
+  .section-title em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    max-width: 1200px;
+  }
+  .about-text p {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .about-text p strong { color: var(--text); font-weight: 600; }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 48px;
+  }
+  .stat {
+    background: var(--surface);
+    padding: 28px 24px;
+    border: 1px solid var(--border);
+  }
+  .stat-num {
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -0.03em;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .skill-row {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .skill-row:hover { border-color: var(--border-hi); background: var(--bg3); }
+  .skill-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .skill-tags { display: flex; gap: 8px; }
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 4px 10px;
+    background: rgba(232,98,42,0.1);
+    border: 1px solid rgba(232,98,42,0.2);
+    color: var(--accent2);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .tag.blue {
+    background: rgba(96,165,250,0.08);
+    border-color: rgba(96,165,250,0.2);
+    color: var(--blue);
+  }
+  .tag.green {
+    background: rgba(74,222,153,0.08);
+    border-color: rgba(74,222,153,0.2);
+    color: var(--green);
+  }
+
+  /* Projects */
+  #projects { background: var(--bg2); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 1400px;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(.16,1,.3,1);
+  }
+  .project-card:hover { border-color: var(--border-hi); transform: translateY(-4px); }
+  .project-card:hover::before { transform: scaleX(1); }
+  .project-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+  }
+  .project-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  .project-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .project-stack {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 32px;
+  }
+  .project-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(232,98,42,0.3);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .project-link:hover { color: var(--accent2); border-color: var(--accent2); }
+  .project-status {
+    position: absolute; top: 20px; right: 20px;
+    font-family: var(--mono); font-size: 10px;
+    padding: 4px 10px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .status-live {
+    background: rgba(74,222,153,0.1);
+    border: 1px solid rgba(74,222,153,0.25);
+    color: var(--green);
+  }
+  .status-wip {
+    background: rgba(232,98,42,0.1);
+    border: 1px solid rgba(232,98,42,0.25);
+    color: var(--accent2);
+  }
+  .status-concept {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  /* AI Workflow section */
+  #ai-workflow { background: var(--bg); }
+  .workflow-container { max-width: 900px; }
+  .workflow-intro {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 64px;
+    max-width: 680px;
+  }
+  .workflow-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .workflow-step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px 36px;
+    align-items: start;
+    transition: border-color 0.2s;
+  }
+  .workflow-step:hover { border-color: var(--border-hi); }
+  .step-num {
+    font-family: var(--mono);
+    font-size: 32px;
+    color: var(--accent);
+    font-weight: 300;
+    line-height: 1;
+    opacity: 0.5;
+  }
+  .step-content h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .step-content p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .step-content .tool-used {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--blue);
+    letter-spacing: 0.06em;
+  }
+
+  /* Contact */
+  #contact { background: var(--bg2); text-align: center; }
+  .contact-inner { max-width: 640px; margin: 0 auto; }
+  .contact-inner .section-title { margin-bottom: 24px; }
+  .contact-sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .contact-link {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 12px 24px;
+    border: 1px solid var(--border);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .contact-link:hover { color: var(--text); border-color: var(--border-hi); }
+
+  /* Footer */
+  footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  footer span { color: var(--accent); }
+
+  /* Divider */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s cubic-bezier(.16,1,.3,1), transform 0.8s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 0 24px 64px; }
+    section { padding: 80px 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+    .hero-scroll { display: none; }
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+  }
+</style>
 </head>
-
 <body>
-    <header class="site-header">
-        <h1>Aarav Chopra</h1>
-        <p class="tagline">NJIT Student | Frontend Intern Candidate</p>
-        <p>Building clean, responsive web interfaces using HTML, CSS, and JavaScript.</p>
 
-        <a class="cta-button"
-           href="https://github.com/ac2928"
-           target="_blank">
-           View My GitHub Projects
-        </a>
-    </header>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
 
-    <main>
-        <section class="card">
-            <h2>About Me</h2>
-            <p>
-                I am an NJIT student learning frontend web development with HTML, CSS, and JavaScript.
-                I am seeking frontend internship opportunities where I can grow my skills and contribute
-                to real-world projects.
-            </p>
-        </section>
+<!-- Nav -->
+<nav>
+  <div class="nav-logo"><a href="http://njit.edu/" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span>AC</span> / portfolio</a></div>
+  <div class="nav-links">
+    <a onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">About</a>
+    <a onclick="document.querySelector('#projects').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">Projects</a>
+    <a onclick="document.querySelector('#ai-workflow').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">AI Workflow</a>
+    <a onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">Contact</a>
+  </div>
+</nav>
 
-        <section class="card">
-            <h2>Links</h2>
-            <ul>
-                <li><a href="https://www.njit.edu">NJIT</a></li>
-                <li><a href="https://github.com/ac2928">My GitHub</a></li>
-            </ul>
-        </section>
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-tag"><a href="http://njit.edu/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">NJIT</a> — AI Product Engineer</div>
+  <h1>Aarav<br/><em>Chopra</em></h1>
+  <p class="hero-sub">
+    Building at the intersection of interfaces and intelligence. I design and engineer AI-powered products — from concept to shipped code.
+  </p>
+  <div class="hero-ctas">
+    <a class="btn-primary" onclick="document.querySelector('#projects').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">View My Work</a>
+    <a href="https://github.com/ac2928" target="_blank" rel="noopener" class="btn-ghost">↗ GitHub</a>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
 
-        <section class="card">
-            <h2>Interactive Demo</h2>
-            <p id="message">Click the button to change this text.</p>
-            <button id="myButton" type="button">Click me</button>
-        </section>
-    </main>
+<!-- About -->
+<section id="about">
+  <div class="section-label">01 — About</div>
+  <div class="section-title">Engineer,<br/><em>builder,</em><br/>tinkerer.</div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm a student at <strong><a href="http://njit.edu/" target="_blank" rel="noopener" style="color:inherit">NJIT</a></strong> studying computer science with a focus on AI-integrated product development. I'm building toward a career as an <strong>AI Product Engineer</strong> — someone who can own the full arc from interface design to model integration to shipped product.</p>
+      <p>My foundation is frontend engineering: <strong>HTML, CSS, JavaScript</strong>, and an obsession with the details of what makes a UI feel right. I'm layering that with applied AI — learning how to integrate language models, build pipelines, and think about AI as a product ingredient, not just a feature.</p>
+      <p>I believe the most important engineers of the next decade will be the ones who can <strong>talk to models and talk to users</strong> — bridging the gap between raw capability and real utility.</p>
+      <div class="about-stats">
+        <div class="stat">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">AI projects shipped</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">NJIT</div>
+          <div class="stat-label">CS Program</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2027</div>
+          <div class="stat-label">Graduation target</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Problems to solve</div>
+        </div>
+      </div>
+    </div>
+    <div class="skills-grid reveal reveal-delay-2">
+      <div class="skill-row">
+        <span class="skill-name">Frontend Engineering</span>
+        <div class="skill-tags"><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">AI Integration</span>
+        <div class="skill-tags"><span class="tag blue">LLM APIs</span><span class="tag blue">Prompting</span></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Product Thinking</span>
+        <div class="skill-tags"><span class="tag green">UX</span><span class="tag green">Prototyping</span></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Python</span>
+        <div class="skill-tags"><span class="tag blue">Scripting</span><span class="tag blue">Data</span></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Version Control</span>
+        <div class="skill-tags"><span class="tag">Git</span><span class="tag">GitHub</span></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">AI Tools</span>
+        <div class="skill-tags"><span class="tag green">Claude</span><span class="tag green">ChatGPT</span><span class="tag green">Cursor</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <footer class="site-footer">
-        <small>© 2026 Aarav Chopra</small>
-    </footer>
+<div class="divider"></div>
 
-    <script src="js/scripts.js"></script>
+<!-- Projects -->
+<section id="projects">
+  <div class="section-label">02 — Projects</div>
+  <div class="section-title">Things I've<br/><em>built.</em></div>
+  <div class="projects-grid" style="grid-template-columns: repeat(2, 1fr);">
+
+    <div class="project-card reveal">
+      <span class="project-status status-live">Live</span>
+      <div class="project-num">01</div>
+      <div class="project-title">Career Engineered Portfolio</div>
+      <p class="project-desc">A responsive personal portfolio site built with HTML, CSS, and JavaScript — the foundation of my web presence. Designed to communicate professional intent and demonstrate component-based thinking from the ground up.</p>
+      <div class="project-stack">
+        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">GitHub Pages</span>
+      </div>
+      <a href="https://ac2928.github.io/is117first/" target="_blank" rel="noopener" class="project-link">View live site ↗</a>
+    </div>
+
+    <div class="project-card reveal reveal-delay-1">
+      <span class="project-status status-live">Live</span>
+      <div class="project-num">02</div>
+      <div class="project-title">Curator Cards</div>
+      <p class="project-desc">An interactive card-based UI project exploring how content can be curated and presented in a visually engaging format. Built with vanilla JavaScript, focusing on dynamic DOM manipulation and clean layout design.</p>
+      <div class="project-stack">
+        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">GitHub Pages</span>
+      </div>
+      <a href="https://ac2928.github.io/is117curator/" target="_blank" rel="noopener" class="project-link">View live site ↗</a>
+    </div>
+
+    <div class="project-card reveal">
+      <span class="project-status status-live">Live</span>
+      <div class="project-num">03</div>
+      <div class="project-title">Museum Project</div>
+      <p class="project-desc">A full web experience built around a museum concept, incorporating scrollytelling techniques to guide the user through exhibits. Demonstrates narrative-driven interface design and immersive content presentation.</p>
+      <div class="project-stack">
+        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Scrollytelling</span>
+      </div>
+      <a href="https://ac2928.github.io/is117-museum-project/" target="_blank" rel="noopener" class="project-link">View live site ↗</a>
+    </div>
+
+    <div class="project-card reveal reveal-delay-1">
+      <span class="project-status status-live">Live</span>
+      <div class="project-num">04</div>
+      <div class="project-title">Scrollytelling Spec Test</div>
+      <p class="project-desc">A technical proof-of-concept for scroll-driven storytelling — the interaction layer powering the Museum Project. Built to test and refine scroll-triggered animations and progressive content reveals as a reusable pattern.</p>
+      <div class="project-stack">
+        <span class="tag">JavaScript</span><span class="tag">Intersection Observer</span><span class="tag">CSS Animations</span>
+      </div>
+      <a href="https://ac2928.github.io/scrollytelling-spec-test-on-museum-project-/" target="_blank" rel="noopener" class="project-link">View live site ↗</a>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- AI Workflow -->
+<section id="ai-workflow">
+  <div class="section-label">03 — AI Workflow</div>
+  <div class="section-title">How I work<br/>with <em>AI</em>.</div>
+  <div class="workflow-container">
+    <p class="workflow-intro reveal">
+      AI isn't a shortcut — it's a multiplier. Here's how I actually use AI tools in my development and learning workflow. Every step involves a decision; the output reflects the quality of those decisions.
+    </p>
+    <div class="workflow-steps">
+      <div class="workflow-step reveal">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h3>Research &amp; direction setting</h3>
+          <p>Before writing any code or content, I use AI to research the professional landscape — real job postings, skill requirements, what practitioners in a field actually do. This shapes the strategy, not just the words.</p>
+          <div class="tool-used">→ Tools used: Claude, Perplexity</div>
+        </div>
+      </div>
+      <div class="workflow-step reveal reveal-delay-1">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h3>Ideation &amp; project framing</h3>
+          <p>I use AI to brainstorm project concepts that are realistic for my stage but ambitious in direction. I iterate on ideas, push back on vague concepts, and ask the model to poke holes in my reasoning.</p>
+          <div class="tool-used">→ Tools used: Claude, ChatGPT</div>
+        </div>
+      </div>
+      <div class="workflow-step reveal reveal-delay-2">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h3>Writing &amp; tone refinement</h3>
+          <p>I draft first, then use AI to refine — not to replace. The voice has to sound like me. I compare AI suggestions against my drafts and pick what's true, not just what's polished. Everything you read here started as my words.</p>
+          <div class="tool-used">→ Tools used: Claude, Grammarly</div>
+        </div>
+      </div>
+      <div class="workflow-step reveal">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h3>Code generation &amp; debugging</h3>
+          <p>AI accelerates my frontend work significantly. I use it to generate boilerplate, explore layout options, and debug tricky CSS or logic issues. But I read every line before merging it. The goal is to understand, not just to ship.</p>
+          <div class="tool-used">→ Tools used: Claude, Cursor, GitHub Copilot</div>
+        </div>
+      </div>
+      <div class="workflow-step reveal reveal-delay-1">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <h3>Image &amp; visual generation</h3>
+          <p>Visual identity matters. I use generative image tools to create consistent, intentional imagery for projects — experimenting with prompts to get visuals that match the tone of the product, not just generic stock.</p>
+          <div class="tool-used">→ Tools used: Midjourney, DALL-E, Adobe Firefly</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label" style="text-align:center">04 — Contact</div>
+    <div class="section-title reveal">Let's<br/><em>connect.</em></div>
+    <p class="contact-sub reveal">I'm actively looking for internship opportunities in AI product engineering, frontend development, and applied AI. Reach out if you're building something interesting or want to talk shop.</p>
+    <div class="contact-links reveal">
+      <span class="contact-link email-reveal" style="cursor:default;min-width:120px;text-align:center;display:inline-block;position:relative;overflow:hidden;">
+        <span class="email-default" style="display:inline-block;transition:opacity 0.25s,transform 0.25s;">Email me</span>
+        <span class="email-addr" style="position:absolute;left:0;right:0;top:50%;transform:translateY(calc(-50% + 8px));opacity:0;transition:opacity 0.25s,transform 0.25s;font-size:11px;letter-spacing:0.04em;">ac2928@njit.edu</span>
+      </span>
+      <a href="https://github.com/ac2928" target="_blank" rel="noopener" class="contact-link">GitHub</a>
+      <a href="http://njit.edu/" target="_blank" rel="noopener" class="contact-link">NJIT</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2026 <span>Aarav Chopra</span> — NJIT</p>
+  <p>Built with intentionality &amp; <span>AI</span></p>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.transform = `translate(calc(${mx}px - 50%), calc(${my}px - 50%))`;
+  });
+  function animRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.transform = `translate(calc(${rx}px - 50%), calc(${ry}px - 50%))`;
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+  document.querySelectorAll('a, button, .project-card, .skill-row, .workflow-step').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform += ' scale(1.8)';
+      ring.style.opacity = '0.5';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.opacity = '1';
+    });
+  });
+
+  // Email hover reveal
+  const emailBox = document.querySelector('.email-reveal');
+  const emailDefault = document.querySelector('.email-default');
+  const emailAddr = document.querySelector('.email-addr');
+  if (emailBox) {
+    emailBox.addEventListener('mouseenter', () => {
+      emailDefault.style.opacity = '0';
+      emailDefault.style.transform = 'translateY(-8px)';
+      emailAddr.style.opacity = '1';
+      emailAddr.style.transform = 'translateY(-50%)';
+    });
+    emailBox.addEventListener('mouseleave', () => {
+      emailDefault.style.opacity = '1';
+      emailDefault.style.transform = 'translateY(0)';
+      emailAddr.style.opacity = '0';
+      emailAddr.style.transform = 'translateY(calc(-50% + 8px))';
+    });
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
