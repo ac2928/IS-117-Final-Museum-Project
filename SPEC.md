@@ -1,88 +1,95 @@
-# SPEC.md — Aspirational Portfolio Site
+# SPEC.md — Project Specification
+**Web Design Museum | IS117 Final Project**
+
+---
+
 ## Project Summary
-Build a single-page aspirational professional portfolio for Aarav Chopra, an NJIT CS student targeting AI Product Engineer roles. This is a full redesign from the previous Swiss Minimal portfolio into a dark editorial design system that communicates a forward-looking professional identity.
 
-This is not a refinement project — it is a purposeful redesign driven by a new professional direction.
+A museum-style single-page website that guides visitors through the history of web design, from 1991 to the present and into the future. The site is built as a curated digital exhibit — not a list of facts, but a structured narrative experience.
 
-## Pages
-- Single-page site (index.html) hosted under /docs for GitHub Pages
+---
 
-## Sections
-1. Hero
-2. About
-3. Projects
-4. AI Workflow
-5. Contact / Footer
+## Topic
 
-## Design System — Dark Editorial
-### Layout
-- Full-width sections with 48px horizontal padding
-- Max-width containers where needed (1200px for grids, 900px for text)
-- Vertical rhythm based on 8px scale
-- CSS custom properties for all design tokens
+**The Evolution of Web Design**
 
-### Typography
-- Primary: Syne (headings, nav, UI labels)
-- Secondary: Instrument Serif (italic accent in headings)
-- Mono: DM Mono (tags, labels, code-style text)
-- Max 3 font weights per family
+Central argument: Web design transformed from a practice driven by technical constraint into a discipline centered on human experience. This shift happened gradually across three decades and continues today.
 
-### Color Palette
-- Background: #0a0a0b
-- Surface: #1e1e24
-- Text: #f0ede8
-- Muted: #7a7880
-- Accent: #e8622a
-- Accent 2: #f0a05a
-- Green: #4ade99
-- Blue: #60a5fa
+---
 
-### Components
-- Buttons: rectangular, no radius, filled (primary) or ghost (secondary)
-- Project cards: surface background, 1px border, accent top-bar on hover
-- Skill rows: full-width bordered rows with tag chips
-- Tags: monospaced, color-coded by category (orange/blue/green)
-- Scroll-reveal animations on all major content blocks
+## Audience
 
-## Deployment Requirements
-- Static HTML/CSS/JS only
-- Hosted on GitHub Pages via /docs folder
-- No build system
-- No frameworks
+Students, designers, and curious visitors with general web literacy. No technical background assumed. The exhibit should be accessible to anyone interested in how the internet became what it is.
 
-## Acceptance Criteria
-### Visual
-- Consistent dark color palette throughout
-- All sections use design token variables
-- Hover states on all interactive elements
-- Smooth scroll-reveal on content as it enters viewport
+---
 
-### Structural
-- Single-page layout
-- All 5 sections present
-- Code organized and readable
+## Design Style
 
-### Functional
-- Nav links scroll to correct sections
-- All project links open correct live sites in new tab
-- Email hover reveal shows ac2928@njit.edu
-- GitHub links point to https://github.com/ac2928
-- Site loads without console errors
+**Swiss International Typographic Style**
 
-### Deployment
-- Deploys via GitHub Pages from /docs
-- README.md includes live site URL
-- README.md includes project reflection
+- Clean grid-based layout
+- Strong typographic hierarchy
+- Minimal color palette (off-white, near-black, single accent red)
+- No decorative elements — every visual choice is functional
+- Fonts: Bebas Neue (display), IBM Plex Sans (body), DM Mono (labels), DM Serif Display (quotes)
 
-## Non-Goals
-- No multi-page conversion
-- No backend or database
-- No framework migration
-- No fake or placeholder projects
+---
 
-## Definition of Done
-The portfolio:
-- Presents a believable and intentional AI Product Engineer identity
-- Showcases only real, shipped projects with working links
-- Clearly communicates AI workflow and tool usage
-- Is deployed, accessible, and submission-ready
+## Brand Archetype
+
+**The Sage**
+
+- Tone: Educational, measured, trustworthy
+- Voice: Clear and direct, like a knowledgeable curator
+- Goal: Help the visitor understand something deeply, not just consume content
+
+---
+
+## Cialdini Principle
+
+**Authority**
+
+- Tim Berners-Lee quote at top of exhibit
+- Historical milestones with specific dates and names
+- External links to credible sources
+- Visual system conveys professionalism and reliability
+
+---
+
+## Exhibit Structure
+
+| Section | ID | Content |
+|---------|-----|---------|
+| Hero | `#hero` | Title, subtitle, CTA |
+| Authority Quote | `#authority` | Tim Berners-Lee quote |
+| About | `#about` | Exhibit overview |
+| Exhibit I | `#s1990` | Early Web, 1991–1999 |
+| Exhibit II | `#s2000` | Web 2.0, 2000–2010 |
+| Exhibit III | `#smodern` | Modern Design, 2010–present |
+| Exhibit IV | `#future` | What comes next |
+| Why It Matters | `#matters` | Closing argument |
+| Footer | — | Credits and design notes |
+
+---
+
+## Technical Requirements
+
+- Single HTML page (`docs/index.html`)
+- Separate CSS (`docs/css/styles.css`)
+- Separate JS (`docs/js/main.js`)
+- Hosted on GitHub Pages from `docs/` folder
+- Responsive at 900px breakpoint
+- Smooth scroll navigation with fixed-nav offset
+- Scroll-reveal animations on exhibit content
+
+---
+
+## Success Criteria
+
+- [ ] Visitor can navigate all sections without confusion
+- [ ] Design style is visually consistent throughout
+- [ ] Authority principle is visible and credible
+- [ ] Each exhibit contains a real historical fact or milestone
+- [ ] Future section contains substantive content (not placeholder)
+- [ ] Site works on mobile
+- [ ] README documents all design and AI decisions
