@@ -1,7 +1,7 @@
 # The Evolution of Web Design — Digital Museum
 **IS117 Final Project | Aarav | Spring 2026**
 
-**Live Site:** [https://ac2928.github.io/is117-museum-project/](https://ac2928.github.io/is117-museum-project/)
+**Live Site:** [https://ac2928.github.io/IS-117-Final-Museum-Project/](https://ac2928.github.io/IS-117-Final-Museum-Project/)
 
 ---
 
